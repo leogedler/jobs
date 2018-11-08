@@ -25,6 +25,11 @@ export default class App extends React.Component {
           settings: SettingsScreen
         })
       })
+    },{
+      navigationOptions: {
+        tabBarVisible: false
+      },
+      lazy: true
     });
 
     return (
