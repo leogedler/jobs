@@ -2,9 +2,8 @@ import axios from 'axios';
 import qs from 'qs';
 import FAKE_DATA from './fake_data'
 
-import { FETCH_JOBS } from './types';
+import { FETCH_JOBS , LIKE_JOB, CLEAR_LIKED_JOBS} from './types';
 
-// 4201738803816157
 
 const JOB_ROOT_URL = 'http://api.indeed.com/ads/apisearch?';
 const JOB_QUERY_PARAMS = {
@@ -35,5 +34,18 @@ export const fetchJobs = (region, callback) => async dispatch => {
 
   } catch (error) {
     console.log('error', error);
+  }
+};
+
+export const likeJob = (job) => {
+  return {
+    type: LIKE_JOB,
+    payload: job
+  }
+};
+
+export const clearLikedJobs = () => {
+  return {
+    type: CLEAR_LIKED_JOBS
   }
 };

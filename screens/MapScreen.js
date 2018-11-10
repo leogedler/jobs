@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button, Icon } from 'react-native-elements';
 import { MapView } from 'expo';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 class MapScreen extends Component {
+
+  // static navigationOptions = {
+  //   title: 'Map',
+  //   tabBarIcon: ({ tintColor }) => (<Icon name="my-location" size={30} color={tintColor} />)
+  // };
 
   state = {
     region: {

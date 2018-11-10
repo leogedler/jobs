@@ -103,35 +103,35 @@ class Swipe extends Component {
 
   renderCards() {
     const { index } = this.state;
-    const { data, renderNoMoreCards } = this.props;
+    const { data, renderNoMoreCards, indexKey, renderCard } = this.props;
 
     if (index >= data.length) {
       return renderNoMoreCards();
     }
 
-    return this.props.data.map((item, i) => {
+    return data.map((item, i) => {
 
       if (i < index) { return null };
 
       if (i === index) {
         return (
           <Animated.View
-            key={item.id}
+            key={item[indexKey || `id-${i}`]}
             style={[this.getCardStyle(), styles.cardStyle, { zIndex: i * -1 }]}
             {...this.state.panResponder.panHandlers}
           >
-            {this.props.renderCard(item)}
+            {renderCard(item)}
           </Animated.View>
         )
       }
       return (
         <Animated.View
-          key={item.id}
+          key={item[indexKey || `id-${i}`]}
           style={[styles.cardStyle, { zIndex: i * -1, top: 10 * (i - index)}]}>
-          {this.props.renderCard(item)}
+          {renderCard(item)}
         </Animated.View>
       );
-    });
+    }).reverse();
   }
 
   render() {
