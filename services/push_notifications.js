@@ -10,9 +10,9 @@ export default async () => {
     console.log('TOKEN', previoustoken);
     if (previoustoken) {
     } else {
-      const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS)
-
-      if (existingStatus !== 'granted') {
+      let { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+      
+      if (status !== 'granted') {
         return;
       }
       
